@@ -29,8 +29,8 @@ deps-linux: deps-common
 
 .PHONY: deps-bazel
 ifeq "$(BAZEL)" ""
-# default to bazel21
-deps-bazel: deps-bazel21
+# default to bazel22
+deps-bazel: deps-bazel22
 else
 deps-bazel:
 	@echo '[deps-bazel] Bazel already present.'
@@ -89,17 +89,17 @@ test-upcoming-bazel-changes:
 	bazel build //... --all_incompatible_changes
 	bazel test //... --all_incompatible_changes
 
-.PHONY: deps-bazel21
-deps-bazel21: ${CACHEDIR}/bazel-installer-21.sh
+.PHONY: deps-bazel22
+deps-bazel22: ${CACHEDIR}/bazel-installer-22.sh
 	$^ --user
 
-${CACHEDIR}/bazel-installer-21.sh:
+${CACHEDIR}/bazel-installer-22.sh:
 ifeq ($(UNAME),Darwin)
-	curl -L -o $@ https://github.com/bazelbuild/bazel/releases/download/0.21.0/bazel-0.21.0-installer-darwin-x86_64.sh
+	curl -L -o $@ https://github.com/bazelbuild/bazel/releases/download/0.22.0/bazel-0.22.0-installer-darwin-x86_64.sh
 	chmod +x $@
 endif
 ifeq ($(UNAME),Linux)
-	curl -L -o $@ https://github.com/bazelbuild/bazel/releases/download/0.21.0/bazel-0.21.0-installer-linux-x86_64.sh
+	curl -L -o $@ https://github.com/bazelbuild/bazel/releases/download/0.22.0/bazel-0.22.0-installer-linux-x86_64.sh
 	chmod +x $@
 endif
 
